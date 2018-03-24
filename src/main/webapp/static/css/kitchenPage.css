@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+
+
+.mainContainer {
+    background: #f0ffd4;
+    width: 100%;
+}
+
+#header {
+    width: 100%;
+    margin-top: -1px;
+    background: #ff6347;
+    text-align: center;
+    margin-bottom: -1px;
+}
+
+#header-kitchen {
+
+    text-align: center;
+    font-family: Bitter, serif;
+    font-size: xx-large;
+    text-shadow: 1px 1px 1px #bcbcbc;
+    width: 45%;
+
+}
+
+#corporation-name {
+    text-align: center;
+    font-family: Lobster, cursive;
+    font-size: xx-large;
+    text-shadow: 1px 1px 1px #bcbcbc;
+    width: 50%;
+}
+
+#backButton {
+    padding-left: 1%;
+    padding-right: 1%;
+    width: 5%;
+    float: left;
+}
+
+.bildsContainer{
+    display: block;
+    box-sizing: border-box;
+    margin-top: 1px;
+}
+
+.bild{
+    font-family: Bitter, serif;
+    text-shadow: 1px 1px 1px #bcbcbc;
+    font-size: medium;
+    margin: 2%;
+    width: 18%;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bild-table {
+    font-family: Bitter, serif;
+    text-shadow: 1px 1px 1px #bcbcbc;
+    font-size: medium;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.bildNumber{
+    font-family: Bitter, serif;
+    text-shadow: 1px 1px 1px #bcbcbc;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.button {
+    text-align: center;
+    margin: 5%;
+}
+
+.line{
+    width: 80%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+
+
+
