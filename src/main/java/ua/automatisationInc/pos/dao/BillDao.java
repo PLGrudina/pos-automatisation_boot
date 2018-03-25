@@ -1,32 +1,10 @@
 package ua.automatisationInc.pos.dao;
 
+import org.springframework.data.repository.CrudRepository;
 import ua.automatisationInc.pos.models.Bill;
-import ua.automatisationInc.pos.models.enums.BillStatus;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 /**
- * Created by PavelGrudina on 21.03.2017.
+ * Created by Pavel Grudina on 24.03.2018.
  */
-public interface BillDao {
-
-    Bill save(Bill bill);
-
-    Bill update(Bill bill);
-
-    Bill saveOrUpdate(Bill bill);
-
-    void delete(long id);
-
-    void deleteByDate(LocalDate date);
-
-    Bill findById(long billId);
-
-    List<Bill> findAll();
-
-    List<Bill> findByDate(LocalDate date);
-
-    List<Bill> findByStatus(BillStatus status);
+public interface BillDao extends CrudRepository<Bill, Long> {
 }

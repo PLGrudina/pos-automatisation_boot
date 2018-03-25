@@ -15,6 +15,8 @@ import ua.automatisationInc.pos.services.AdministratorService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by PavelGrudina on 05.04.2017.
@@ -34,19 +36,19 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public List<Ingredient> getAllIngredients() {
-        return ingredientDao.findAll();
+        return StreamSupport.stream(ingredientDao.findAll().spliterator(),false).collect(toList());
     }
 
     @Override
     @Transactional
     public List<Dish> getAllDishes() {
-        return dishDao.findAllDish();
+        return StreamSupport.stream(dishDao.findAll().spliterator(),false).collect(toList());
     }
 
     @Override
     @Transactional
     public List<Bill> getAllBills() {
-        return billDao.findAll();
+        return StreamSupport.stream(billDao.findAll().spliterator(),false).collect(toList());
     }
 
     @Override
@@ -75,7 +77,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public Ingredient saveIngredient(Ingredient ingredient) {
-        return ingredientDao.saveOrUpdate(ingredient);
+        return ingredientDao.save(ingredient);
     }
 
     @Override

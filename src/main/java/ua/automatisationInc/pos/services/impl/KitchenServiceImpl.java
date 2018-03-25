@@ -3,7 +3,6 @@ package ua.automatisationInc.pos.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.automatisationInc.pos.dao.BillDao;
 import ua.automatisationInc.pos.models.Bill;
 import ua.automatisationInc.pos.services.KitchenService;
 

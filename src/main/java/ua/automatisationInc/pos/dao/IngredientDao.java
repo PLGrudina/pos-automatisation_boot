@@ -1,27 +1,10 @@
 package ua.automatisationInc.pos.dao;
 
-
+import org.springframework.data.repository.CrudRepository;
 import ua.automatisationInc.pos.models.Ingredient;
 
-import java.util.List;
-
 /**
- * Created by PavelGrudina on 21.03.2017.
+ * Created by Pavel Grudina on 25.03.2018.
  */
-public interface IngredientDao {
-
-    Ingredient save(Ingredient ingredient);
-
-    Ingredient update(Ingredient ingredient);
-
-    Ingredient saveOrUpdate(Ingredient ingredient);
-
-    void delete(long id);
-
-    Ingredient findByName(String name);
-
-    Ingredient findById(long id);
-
-    List<Ingredient> findAll();
-
+public interface IngredientDao extends CrudRepository<Ingredient, Long> {
 }

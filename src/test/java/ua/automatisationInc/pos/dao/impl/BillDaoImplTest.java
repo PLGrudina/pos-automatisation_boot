@@ -9,14 +9,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ua.automatisationInc.pos.config.PersistenceConfig;
-import ua.automatisationInc.pos.dao.BillDao;
 import ua.automatisationInc.pos.models.Bill;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by PavelGrudina on 05.04.2017.

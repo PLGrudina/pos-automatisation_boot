@@ -3,9 +3,6 @@ package ua.automatisationInc.pos.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.automatisationInc.pos.dao.BillDao;
-import ua.automatisationInc.pos.dao.DishDao;
-import ua.automatisationInc.pos.dao.IngredientDao;
 import ua.automatisationInc.pos.models.Bill;
 import ua.automatisationInc.pos.models.Dish;
 import ua.automatisationInc.pos.models.enums.DishType;
@@ -14,7 +11,6 @@ import ua.automatisationInc.pos.services.CashierService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**

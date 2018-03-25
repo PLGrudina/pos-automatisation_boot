@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ua.automatisationInc.pos.config.PersistenceConfig;
-import ua.automatisationInc.pos.dao.DishDao;
 import ua.automatisationInc.pos.models.Dish;
 import ua.automatisationInc.pos.models.enums.DishType;
 
