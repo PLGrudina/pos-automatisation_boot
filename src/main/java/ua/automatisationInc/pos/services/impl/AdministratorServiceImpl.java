@@ -54,7 +54,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public Ingredient findById(long id) {
-        return ingredientDao.findById(id).isPresent();
+        return ingredientDao.findById(id).get();
     }
 
     @Override

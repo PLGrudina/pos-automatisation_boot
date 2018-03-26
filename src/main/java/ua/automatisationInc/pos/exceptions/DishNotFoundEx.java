@@ -10,7 +10,7 @@ public class DishNotFoundEx extends ItemNotFoundEx {
     private String info = "Dish not found in database";
 
     DishNotFoundEx(){
-        printStackTrace();
+
     }
 
     DishNotFoundEx(Long id){
