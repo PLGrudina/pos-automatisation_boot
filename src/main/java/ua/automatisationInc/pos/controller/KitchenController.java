@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ua.automatisationInc.pos.dao.impl.BillDaoImpl;
 import ua.automatisationInc.pos.models.Bill;
 import ua.automatisationInc.pos.models.enums.BillStatus;
 import ua.automatisationInc.pos.services.CashierService;

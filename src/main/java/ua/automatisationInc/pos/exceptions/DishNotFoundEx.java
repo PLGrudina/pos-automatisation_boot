@@ -9,16 +9,12 @@ public class DishNotFoundEx extends ItemNotFoundEx {
 
     private String info = "Dish not found in database";
 
-    DishNotFoundEx(){
+    public DishNotFoundEx(){
 
     }
 
     DishNotFoundEx(Long id){
         info = LocalDateTime.now() + "Dish id " + id + " not found in database";
-    }
-
-    DishNotFoundEx(String name){
-        info = LocalDateTime.now() + "Dish with name " + name + " not found in database";
     }
 
     public String getInfo() {

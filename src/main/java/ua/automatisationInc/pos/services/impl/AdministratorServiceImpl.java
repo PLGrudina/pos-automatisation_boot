@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.automatisationInc.pos.dao.BillDao;
 import ua.automatisationInc.pos.dao.DishDao;
 import ua.automatisationInc.pos.dao.IngredientDao;
+import ua.automatisationInc.pos.exceptions.IngredientNotFoundEx;
 import ua.automatisationInc.pos.models.Bill;
 import ua.automatisationInc.pos.models.Dish;
 import ua.automatisationInc.pos.models.Ingredient;
@@ -14,6 +15,7 @@ import ua.automatisationInc.pos.services.AdministratorService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.toList;
@@ -54,13 +56,21 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public Ingredient findById(long id) {
+        if (!ingredientDao.findById(id).isPresent()){
+            throw new IngredientNotFoundEx();
+        }
         return ingredientDao.findById(id).get();
     }
 
     @Override
     @Transactional
     public Ingredient findByName(String name) {
-        return ingredientDao.findByName(name);
+        List<Ingredient> allIngredients = getAllIngredients();
+       Optional<Ingredient> opt = allIngredients.stream().filter(ingredient -> ingredient.getName().equals(name)).findFirst();
+       if (!opt.isPresent()){
+           throw new IngredientNotFoundEx();
+       }
+        return opt.get();
     }
 
     @Override
@@ -83,28 +93,27 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public void deleteIngredientById(long id) {
-        ingredientDao.delete(id);
+        ingredientDao.deleteById(id);
     }
 
     @Override
     @Transactional
     public Dish saveDish(Dish dish) {
-        return dishDao.saveOrUpdate(dish);
+        return dishDao.save(dish);
     }
 
     @Override
     @Transactional
     public void deleteDishById(long id) {
-        dishDao.delete(id);
+        dishDao.deleteById(id);
     }
 
     @Override
     @Transactional
     public double billSumByDate(LocalDate date) {
         double sum = 0;
-        List<Bill> billsByDate = billDao.findByDate(date);
+        List<Bill> billsByDate = getAllBills().stream().filter(bill -> bill.getDate().equals(date)).collect(toList());
         List<Bill> billsDoneByDate = billsByDate.stream().filter(bill -> bill.getStatus() == BillStatus.DONE).collect(Collectors.toList());
-        //billsDoneByDate.forEach((bill) -> sum += bill.getTotalPrice());
         for (Bill bill : billsDoneByDate) {
             sum+=bill.getTotalPrice();
         }
