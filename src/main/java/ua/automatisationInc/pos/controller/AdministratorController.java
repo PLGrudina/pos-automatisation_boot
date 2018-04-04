@@ -28,6 +28,11 @@ public class AdministratorController {
     private CashierService cashierService;
 
 
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String getStartPage() {
+        return "index";
+    }
+
     @RequestMapping(path = "/administrator", method = RequestMethod.GET)
     public String getAdminPage(Model model) {
         List<Ingredient> ingredientList = administratorService.getAllIngredients();
@@ -94,7 +99,7 @@ public class AdministratorController {
         if (url.equals("")) {
             dish.setUrl("/static/img/no-picture.png");
         }
-        if (ingredientName.length>1) {
+        if (ingredientName.length > 1) {
 
             for (String nameIngr : ingredientName) {
                 Ingredient ingredient = administratorService.findByName(nameIngr);

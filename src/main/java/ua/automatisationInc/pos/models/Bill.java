@@ -3,6 +3,7 @@ package ua.automatisationInc.pos.models;
 import ua.automatisationInc.pos.models.enums.BillStatus;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "BILLS")
-public class Bill {
+public class Bill implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,7 +35,7 @@ public class Bill {
     @Enumerated(EnumType.STRING)
     private BillStatus status;
 
-    @ManyToMany (cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Dish> dishList = new ArrayList<>();
 
 

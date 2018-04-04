@@ -3,6 +3,7 @@ package ua.automatisationInc.pos.models;
 import ua.automatisationInc.pos.models.enums.DishType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +11,15 @@ import java.util.List;
  * Created by PavelGrudina on 21.03.2017.
  */
 @Entity
-@Table (name = "DISHES")
-public class Dish {
+@Table(name = "DISHES")
+public class Dish implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false, unique = true)
     private long id;
 
-    @Column (unique = true, length = 300)
+    @Column(unique = true, length = 300)
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +31,7 @@ public class Dish {
 
     private String url;
 
-    @ManyToMany (cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Ingredient> ingredients = new ArrayList<>();
 
 
@@ -44,7 +45,6 @@ public class Dish {
 
     public Dish() {
     }
-
 
 
     public long getId() {
@@ -79,7 +79,9 @@ public class Dish {
         this.price = price;
     }
 
-    public double getWeight() {return weight;}
+    public double getWeight() {
+        return weight;
+    }
 
     public void setWeight(double weight) {
         this.weight = weight;

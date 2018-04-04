@@ -25,10 +25,10 @@ public class KitchenServiceImpl implements KitchenService {
     @Override
     @Transactional
     public Bill showOrder(long id) {
-        if (!billDao.findById(id).isPresent()) {
+        if (billDao.findOne(id) == null) {
             throw new BillNotFoundEx();
         }
-        return billDao.findById(id).get();
+        return billDao.findOne(id);
     }
 
     @Override

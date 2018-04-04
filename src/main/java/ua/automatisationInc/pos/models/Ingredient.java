@@ -1,31 +1,31 @@
 package ua.automatisationInc.pos.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by PavelGrudina on 21.03.2017.
  */
 @Entity
-@Table (name = "INGREDIENTS")
-public class Ingredient {
+@Table(name = "INGREDIENTS")
+public class Ingredient implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
-    @Column (name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false, unique = true)
     private long id;
 
-    @Column (unique = true, length = 300)
+    @Column(unique = true, length = 300)
     private String name;
 
     private double weight;
 
     private LocalDate date;
 
-    @ManyToMany (cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Dish> dishes = new ArrayList<>();
 
     public Ingredient(String name, double weight, LocalDate date, List<Dish> dishes) {
@@ -37,7 +37,6 @@ public class Ingredient {
 
     public Ingredient() {
     }
-
 
 
     public long getId() {
@@ -71,9 +70,11 @@ public class Ingredient {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
     public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
     }
+
     public List<Dish> getDishes() {
         return dishes;
     }

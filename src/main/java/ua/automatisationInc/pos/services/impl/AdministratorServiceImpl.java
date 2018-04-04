@@ -56,10 +56,10 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public Ingredient findById(long id) {
-        if (!ingredientDao.findById(id).isPresent()){
+        if (ingredientDao.findOne(id) == null){
             throw new IngredientNotFoundEx();
         }
-        return ingredientDao.findById(id).get();
+        return ingredientDao.findOne(id);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public void deleteIngredientById(long id) {
-        ingredientDao.deleteById(id);
+        ingredientDao.delete(id);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public void deleteDishById(long id) {
-        dishDao.deleteById(id);
+        dishDao.delete(id);
     }
 
     @Override

@@ -44,10 +44,10 @@ public class CashierServiceImpl implements CashierService {
     @Transactional
     public Dish addDishToBill(long billId, Dish dish) {
 
-        if (!billDao.findById(billId).isPresent()) {
+        if (billDao.findOne(billId) == null) {
             throw new BillNotFoundEx();
         }
-        Bill bill = billDao.findById(billId).get();
+        Bill bill = billDao.findOne(billId);
         bill.getDishList().add(dish);
         return dish;
     }
@@ -56,20 +56,20 @@ public class CashierServiceImpl implements CashierService {
     @Transactional
     public void deleteDishFromBill(long billId, Dish dish) {
 
-        if (!billDao.findById(billId).isPresent()) {
+        if (billDao.findOne(billId) == null) {
             throw new BillNotFoundEx();
         }
-        Bill bill = billDao.findById(billId).get();
+        Bill bill = billDao.findOne(billId);
         bill.getDishList().remove(dish);
     }
 
     @Override
     @Transactional
     public void cleanBill(long id) {
-        if (!billDao.findById(id).isPresent()) {
+        if (billDao.findOne(id) == null) {
             throw new BillNotFoundEx();
         }
-        Bill bill = billDao.findById(id).get();
+        Bill bill = billDao.findOne(id);
         bill.getDishList().clear();
         bill.setBonus(0);
         bill.setComment("");
@@ -80,20 +80,20 @@ public class CashierServiceImpl implements CashierService {
     @Override
     @Transactional
     public double setBonus(long billId, int percent) {
-        if (!billDao.findById(billId).isPresent()) {
+        if (billDao.findOne(billId) == null) {
             throw new BillNotFoundEx();
         }
-        Bill bill = billDao.findById(billId).get();
+        Bill bill = billDao.findOne(billId);
         return (bill.getPrice() * percent / 100);
     }
 
     @Override
     @Transactional
     public double setBonus(long billId, double amount) {
-        if (!billDao.findById(billId).isPresent()) {
+        if (billDao.findOne(billId) == null) {
             throw new BillNotFoundEx();
         }
-        Bill bill = billDao.findById(billId).get();
+        Bill bill = billDao.findOne(billId);
         bill.setBonus(amount);
         return amount;
     }
@@ -101,10 +101,10 @@ public class CashierServiceImpl implements CashierService {
     @Override
     @Transactional
     public String setComment(long billId, String comment) {
-        if (!billDao.findById(billId).isPresent()) {
+        if (billDao.findOne(billId) == null) {
             throw new BillNotFoundEx();
         }
-        Bill bill = billDao.findById(billId).get();
+        Bill bill = billDao.findOne(billId);
         bill.setComment(comment);
         return comment;
     }
@@ -112,10 +112,10 @@ public class CashierServiceImpl implements CashierService {
     @Override
     @Transactional
     public Bill getBill(long billId) {
-        if (!billDao.findById(billId).isPresent()) {
+        if (billDao.findOne(billId) == null) {
             throw new BillNotFoundEx();
         }
-        return billDao.findById(billId).get();
+        return billDao.findOne(billId);
     }
 
     @Override
@@ -151,11 +151,11 @@ public class CashierServiceImpl implements CashierService {
     @Override
     @Transactional
     public Dish getDishById(long dishId) {
-        if (!dishDao.findById(dishId).isPresent()) {
+        if (dishDao.findOne(dishId) == null) {
             throw new DishNotFoundEx();
         }
 
-        return dishDao.findById(dishId).get();
+        return dishDao.findOne(dishId);
     }
 
     @Override
