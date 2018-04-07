@@ -1,64 +1,163 @@
-.wrapper{
-	display: block;
-	width: 100%;
-	margin:  0px auto;
+* {
+	margin: 0;
+	padding: 0;
 }
-.bmenu input{
-	width: 400px;
-	background: none;
-	border:none;
-	margin: 50px auto;
-	font-size: 40px;
-	line-height: 66px;
-}
-.backFoto {
+
+html,body {
+	height: 100%;
 	display: block;
-	padding-top: 120px;
-	padding-bottom: 120px;
+	padding-top: 5%;
+	padding-bottom: 5%;
 	background: url("../img/start.jpg") no-repeat top center fixed;
-	background-size: 100%;
-}
-.bmenu{
-	padding: 50px 0px;
-	margin: 0 auto;
-	position: relative;
-	background: rgba(0,0,0,0.7);
-	width: 500px;
-	height: 400px;
-	border-radius: 250px;
-	transition: background-color 0.5s ease-in-out;
-}
-.bmenu:hover{
-	background: rgba(0,0,0,0.2);
+	background-size: cover;
 }
 
-.bmenu li input{
-	white-space: nowrap;
-	color: transparent;
-	display: block;
+/*form*/
+
+.row {
+	margin-bottom: 10% ;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.form-horizontal{
+	background: #f0ffd4;
+	padding-bottom: 40px;
+	border-radius: 15px;
 	text-align: center;
-	text-transform: uppercase;
-	text-shadow: 0px 0px 3px #fff;
-	letter-spacing: 1px;
-	border-radius:10px;
+}
+.form-horizontal .heading{
+	display: block;
+	font-size: 35px;
+	font-weight: 700;
+	padding: 4%;
+	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: 30px;
+}
+.form-horizontal .form-group{
+	padding: 0 40px;
+	margin: 0 0 25px 0;
+	position: relative;
+}
+.form-horizontal .form-control{
+	background: #f0f0f0;
+	border: none;
+	border-radius: 20px;
+	box-shadow: none;
+	padding: 0 20px 0 45px;
+	height: 40px;
+	transition: all 0.3s ease 0s;
+}
+.form-horizontal .form-control:focus{
+	background: #e0e0e0;
+	box-shadow: none;
+	outline: 0 none;
+}
+.form-horizontal .form-group i{
+	position: absolute;
+	top: 12px;
+	left: 60px;
+	font-size: 17px;
+	color: #c8c8c8;
+	transition : all 0.5s ease 0s;
+}
+.form-horizontal .form-control:focus + i{
+	color: #00b4ef;
+}
+.form-horizontal .fa-question-circle{
+	display: inline-block;
+	position: absolute;
+	top: 12px;
+	right: 60px;
+	font-size: 20px;
+	color: #808080;
+	transition: all 0.5s ease 0s;
+}
+.form-horizontal .fa-question-circle:hover{
+	color: #000;
+}
+.form-horizontal .main-checkbox{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: #1FCB2F;
+	border-radius: 50%;
+	position: relative;
+	margin: 5px 0 0 5px;
+	border: 1px solid #1FCB2F;
+}
+.form-horizontal .main-checkbox label{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+.form-horizontal .main-checkbox label:after{
+	content: "";
+	width: 10px;
+	height: 5px;
+	position: absolute;
+	top: 5px;
+	left: 4px;
+	border: 3px solid #f0ffd4;
+	border-top: none;
+	border-right: none;
+	background: transparent;
+	opacity: 0;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.form-horizontal .main-checkbox input[type=checkbox]{
+	visibility: hidden;
+}
+.form-horizontal .main-checkbox input[type=checkbox]:checked + label:after{
+	opacity: 1;
+}
+.form-horizontal .text{
+	float: left;
+	margin-left: 7px;
+	line-height: 20px;
+	padding-top: 5px;
+	text-transform: capitalize;
+}
+.form-horizontal .btn{
+	float: right;
+	font-size: 14px;
+	color: #f0ffd4;
+	background: #1FCB2F;
+	border-radius: 30px;
+	padding: 10px 25px;
+	border: none;
+	text-transform: capitalize;
+	transition: all 0.5s ease 0s;
+}
+@media only screen and (max-width: 479px){
+	.form-horizontal .form-group{
+		padding: 0 25px;
+	}
+	.form-horizontal .form-group i{
+		left: 45px;
+	}
+	.form-horizontal .btn{
+		padding: 10px 20px;
+	}
 }
 
-.bmenu:hover li input{
-	text-shadow: 0px 0px 10px #fff;
-}
-.bmenu li input:hover{
-	text-shadow: none;
-	color: #fff;
-	background: rgba(0,1,1,0.7);
-}
 
+/*footer*/
 .footer{
 	display: block;
 	box-sizing: border-box;
-	color: white;
-	font-weight: 800;
-	background-color: black;
-	font-size: 20px;
-	padding: 10px;
+	color: #e5ffba;
+	font-weight: 700;
+	background: rgba(0,0,0,0.5);
+	padding: 1%;
 	text-align: center;
+	transition: background-color 0.5s ease-in-out;
+}
+
+.footer:hover {
+	background: rgba(0,0,0,0.2);
 }
