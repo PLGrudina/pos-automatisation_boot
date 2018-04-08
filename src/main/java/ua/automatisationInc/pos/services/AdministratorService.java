@@ -12,11 +12,8 @@ import java.util.List;
  */
 public interface AdministratorService {
 
+//    ingredients
     List<Ingredient> getAllIngredients ();
-
-    List<Dish> getAllDishes ();
-
-    List<Bill> getAllBills ();
 
     String getIngredientStatus (Ingredient ingredient);
 
@@ -28,9 +25,17 @@ public interface AdministratorService {
 
     void deleteIngredientById (long id);
 
+//    dishes
+
+    List<Dish> getAllDishes ();
+
     Dish saveDish (Dish dish);
 
     void deleteDishById (long id);
+
+//    bills
+
+    List<Bill> getAllBills ();
 
     double billSumByDate (LocalDate date);
 

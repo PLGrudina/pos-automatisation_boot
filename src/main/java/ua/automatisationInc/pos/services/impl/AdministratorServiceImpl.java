@@ -1,5 +1,6 @@
 package ua.automatisationInc.pos.services.impl;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +16,9 @@ import ua.automatisationInc.pos.services.AdministratorService;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -38,39 +39,19 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public List<Ingredient> getAllIngredients() {
-        return StreamSupport.stream(ingredientDao.findAll().spliterator(),false).collect(toList());
-    }
-
-    @Override
-    @Transactional
-    public List<Dish> getAllDishes() {
-        return StreamSupport.stream(dishDao.findAll().spliterator(),false).collect(toList());
-    }
-
-    @Override
-    @Transactional
-    public List<Bill> getAllBills() {
-        return StreamSupport.stream(billDao.findAll().spliterator(),false).collect(toList());
+        return Lists.newArrayList(ingredientDao.findAll());
     }
 
     @Override
     @Transactional
     public Ingredient findById(long id) {
-        if (ingredientDao.findOne(id) == null){
-            throw new IngredientNotFoundEx();
-        }
         return ingredientDao.findOne(id);
     }
 
     @Override
     @Transactional
     public Ingredient findByName(String name) {
-        List<Ingredient> allIngredients = getAllIngredients();
-       Optional<Ingredient> opt = allIngredients.stream().filter(ingredient -> ingredient.getName().equals(name)).findFirst();
-       if (!opt.isPresent()){
-           throw new IngredientNotFoundEx();
-       }
-        return opt.get();
+        return ingredientDao.findOrderByName(name);
     }
 
     @Override
@@ -96,6 +77,13 @@ public class AdministratorServiceImpl implements AdministratorService {
         ingredientDao.delete(id);
     }
 
+
+    @Override
+    @Transactional
+    public List<Dish> getAllDishes() {
+        return StreamSupport.stream(dishDao.findAll().spliterator(), false).collect(toList());
+    }
+
     @Override
     @Transactional
     public Dish saveDish(Dish dish) {
@@ -108,6 +96,13 @@ public class AdministratorServiceImpl implements AdministratorService {
         dishDao.delete(id);
     }
 
+
+    @Override
+    @Transactional
+    public List<Bill> getAllBills() {
+        return StreamSupport.stream(billDao.findAll().spliterator(), false).collect(toList());
+    }
+
     @Override
     @Transactional
     public double billSumByDate(LocalDate date) {
@@ -115,7 +110,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         List<Bill> billsByDate = getAllBills().stream().filter(bill -> bill.getDate().equals(date)).collect(toList());
         List<Bill> billsDoneByDate = billsByDate.stream().filter(bill -> bill.getStatus() == BillStatus.DONE).collect(Collectors.toList());
         for (Bill bill : billsDoneByDate) {
-            sum+=bill.getTotalPrice();
+            sum += bill.getTotalPrice();
         }
         return sum;
     }

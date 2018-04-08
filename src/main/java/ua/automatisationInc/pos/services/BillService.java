@@ -2,21 +2,22 @@ package ua.automatisationInc.pos.services;
 
 import ua.automatisationInc.pos.models.Bill;
 import ua.automatisationInc.pos.models.Dish;
-import ua.automatisationInc.pos.models.enums.DishType;
 
 import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Created by Kostya on 22.03.2017.
+ * Created by Pavel Grudina on 08.04.2018.
  */
-public interface CashierService {
+public interface BillService {
 
-//    bills
+    List<Bill> getAllBills ();
+
+    double billSumByDate (LocalDate date);
 
     Bill createBill();
 
-    Dish addDishToBill(long billId, Dish dish);
+    Bill addDishToBill(long billId, Dish dish);
 
     void deleteDishFromBill(long billId, Dish dish);
 
@@ -30,18 +31,12 @@ public interface CashierService {
 
     double getOrderPrice (Bill bill);
 
-    Bill getBill(long billId);
+    Bill getBillById(long billId);
 
     List<Bill> getAllBillsByToDay(LocalDate date);
 
     void saveBill(Bill bill);
 
+    void deleteBillById (long billId);
 
-//    dishes
-
-    List<Dish> getDishesByType(DishType type);
-
-    List<DishType> getDishTypes();
-
-    Dish getDishById(long dishId);
 }
