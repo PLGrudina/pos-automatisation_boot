@@ -21,24 +21,9 @@ public class BillServiceImpl implements BillService {
     @Autowired
     BillDao billDao;
 
-
-    @Override
-    public List<Bill> getAllBills() {
-        return null;
-    }
-
-    @Override
-    public double billSumByDate(LocalDate date) {
-        return 0;
-    }
-
-    @Override
-    public Bill createBill() {
-        return null;
-    }
-
     @Override
     public Bill addDishToBill(long billId, Dish dish) {
+//        update bill price after added
         return null;
     }
 
@@ -68,23 +53,13 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public double getOrderPrice(Bill bill) {
-        return 0;
-    }
-
-    @Override
     public Bill getBillById(long billId) {
         return null;
     }
 
     @Override
-    public List<Bill> getAllBillsByToDay(LocalDate date) {
-        return null;
-    }
-
-    @Override
-    public void saveBill(Bill bill) {
-
+    public Bill saveBill(Bill bill) {
+     return bill;
     }
 
     @Override

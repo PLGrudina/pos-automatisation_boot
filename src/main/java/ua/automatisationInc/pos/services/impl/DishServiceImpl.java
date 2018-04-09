@@ -1,5 +1,6 @@
 package ua.automatisationInc.pos.services.impl;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.automatisationInc.pos.dao.DishDao;
 import ua.automatisationInc.pos.models.Dish;
@@ -28,6 +29,11 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
+    public void sellDish(Dish dish, double... ingredientsWeight) {
+
+    }
+
+    @Override
     public Dish getDishById(long dishId) {
         return null;
     }
@@ -38,7 +44,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getDishesByType(DishType type) {
+    public List<Dish> getDishByType(DishType type) {
         return null;
     }
 

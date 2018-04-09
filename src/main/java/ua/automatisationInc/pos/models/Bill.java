@@ -20,6 +20,10 @@ public class Bill implements Serializable {
     @Column(name = "id", nullable = false, unique = true)
     private long id;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "restId", nullable = false, unique = true)
+    private long restId;
+
     private double bonus;
 
     private double price;
@@ -123,6 +127,14 @@ public class Bill implements Serializable {
 
     public void setStatus(BillStatus status) {
         this.status = status;
+    }
+
+    public long getRestId() {
+        return restId;
+    }
+
+    public void setRestId(long restId) {
+        this.restId = restId;
     }
 
     @Override

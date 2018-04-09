@@ -19,6 +19,10 @@ public class Dish implements Serializable {
     @Column(name = "id", nullable = false, unique = true)
     private long id;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "restId", nullable = false, unique = true)
+    private long restId;
+
     @Column(unique = true, length = 300)
     private String name;
 
@@ -101,6 +105,14 @@ public class Dish implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public long getRestId() {
+        return restId;
+    }
+
+    public void setRestId(long restId) {
+        this.restId = restId;
     }
 
     @Override

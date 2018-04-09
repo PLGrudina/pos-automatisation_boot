@@ -19,6 +19,10 @@ public class User implements Serializable {
     @Column(name = "id", nullable = false, unique = true)
     private long id;
 
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "restId", nullable = false, unique = true)
+    private long restId;
+
     @Column(name = "userLogin", nullable = false)
     private String userLogin;
 
@@ -71,6 +75,22 @@ public class User implements Serializable {
 
     public void setRole(UserRoles role) {
         this.role = role;
+    }
+
+    public long getRestId() {
+        return restId;
+    }
+
+    public void setRestId(long restId) {
+        this.restId = restId;
+    }
+
+    public List<Dish> getCashierBasket() {
+        return cashierBasket;
+    }
+
+    public void setCashierBasket(List<Dish> cashierBasket) {
+        this.cashierBasket = cashierBasket;
     }
 
     @Override

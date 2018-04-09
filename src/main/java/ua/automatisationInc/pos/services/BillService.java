@@ -11,11 +11,11 @@ import java.util.List;
  */
 public interface BillService {
 
-    List<Bill> getAllBills ();
+    Bill saveBill(Bill bill);
 
-    double billSumByDate (LocalDate date);
+    void deleteBillById (long billId);
 
-    Bill createBill();
+    Bill getBillById(long billId);
 
     Bill addDishToBill(long billId, Dish dish);
 
@@ -28,15 +28,5 @@ public interface BillService {
     double setBonus(long billId, double amount);
 
     String setComment(long billId, String comment);
-
-    double getOrderPrice (Bill bill);
-
-    Bill getBillById(long billId);
-
-    List<Bill> getAllBillsByToDay(LocalDate date);
-
-    void saveBill(Bill bill);
-
-    void deleteBillById (long billId);
 
 }

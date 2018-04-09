@@ -14,11 +14,13 @@ public interface DishService {
 
     Dish saveDish (Dish dish);
 
+    void sellDish (Dish dish, double ... ingredientsWeight);
+
     Dish getDishById(long dishId);
 
     void deleteDishById (long id);
 
-    List<Dish> getDishesByType(DishType type);
+    List<Dish> getDishByType(DishType type);
 
     List<DishType> getDishTypes();
 
