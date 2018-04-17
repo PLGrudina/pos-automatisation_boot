@@ -5,7 +5,9 @@ import ua.automatisationInc.pos.models.enums.DishType;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by PavelGrudina on 21.03.2017.
@@ -37,6 +39,10 @@ public class Dish implements Serializable {
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Ingredient> ingredients = new ArrayList<>();
+
+    @ElementCollection (targetClass = Double.class)
+    @MapKeyClass(java.lang.String.class)
+    private Map<String,Double> recipe = new HashMap<>();
 
 
     public Dish(String name, DishType category, double price, double weight, List<Ingredient> ingredients) {
