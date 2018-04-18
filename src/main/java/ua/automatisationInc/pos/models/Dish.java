@@ -45,12 +45,14 @@ public class Dish implements Serializable {
     private Map<String,Double> recipe = new HashMap<>();
 
 
-    public Dish(String name, DishType category, double price, double weight, List<Ingredient> ingredients) {
+    public Dish(String name, DishType category, double price, double weight, String url, List<Ingredient> ingredients, Map<String, Double> recipe) {
         this.name = name;
         this.category = category;
         this.price = price;
         this.weight = weight;
+        this.url = url;
         this.ingredients = ingredients;
+        this.recipe = recipe;
     }
 
     public Dish() {
@@ -119,6 +121,14 @@ public class Dish implements Serializable {
 
     public void setRestId(long restId) {
         this.restId = restId;
+    }
+
+    public Map<String, Double> getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Map<String, Double> recipe) {
+        this.recipe = recipe;
     }
 
     @Override
