@@ -14,7 +14,7 @@ public interface DishService {
 
     Dish saveDish (Dish dish);
 
-    void sellDish (Dish dish, double ... ingredientsWeight);
+    void sellDish (Dish dish);
 
     Dish getDishById(long dishId);
 
