@@ -18,10 +18,10 @@ public interface RestaurantService {
     List<Ingredient> getAllIngredient (long restId);
 
     List<Bill> getAllBill (long restId);
-
-    List<Bill> getBillByDate (LocalDate date);
-
-    double billSumByDate (LocalDate date);
+//
+//    List<Bill> getBillByDate (LocalDate date);
+//
+//    double billSumByDate (LocalDate date);
 
     List<User> getAllUser (long restId);
 }
