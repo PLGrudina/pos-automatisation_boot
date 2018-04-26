@@ -77,6 +77,6 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public void deleteBillById(long billId) {
-        billDao.deletebOrderById(billId);
+        billDao.delete(billId);
     }
 }

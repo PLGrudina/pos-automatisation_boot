@@ -1,5 +1,8 @@
 package ua.automatisationInc.pos.models;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,16 +28,20 @@ public class Restaurant implements Serializable {
     @Column(name = "restaurantPassword", nullable = false)
     private String userPassword;
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Dish> allDish = new ArrayList<>();
 
-    @OneToMany (cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> allUser = new ArrayList<>();
 
-    @OneToMany (cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Bill> allBill = new ArrayList<>();
 
-    @OneToMany (cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ingredient> allIngredient = new ArrayList<>();
 
     public Restaurant() {
@@ -111,6 +118,7 @@ public class Restaurant implements Serializable {
     public void setAllIngredient(List<Ingredient> allIngredient) {
         this.allIngredient = allIngredient;
     }
+
 
     @Override
     public boolean equals(Object o) {

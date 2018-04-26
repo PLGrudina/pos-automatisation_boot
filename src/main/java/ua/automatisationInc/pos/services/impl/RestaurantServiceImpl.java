@@ -26,35 +26,36 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Dish> getAllDish(long restId) {
-        return Lists.newArrayList(restaurantDao.getDishListBOrderById(restId));
+        return Lists.newArrayList(restaurantDao.allDishOrderById(restId));
     }
 
     @Override
     public List<Ingredient> getAllIngredient(long restId) {
-        return Lists.newArrayList(restaurantDao.getIngredientListBOrderById(restId));
+        return Lists.newArrayList(restaurantDao.allIngredientOrderById(restId));
     }
 
     @Override
     public List<Bill> getAllBill(long restId) {
-        return Lists.newArrayList(restaurantDao.getBillListBOrderById(restId));
-    }
-
-    @Override
-    public List<Bill> getBillByDate(LocalDate date) {
-        return Lists.newArrayList(restaurantDao.getBillListByDate(date));
-    }
-
-    @Override
-    public double billSumByDate(LocalDate date) {
-        double sum = 0;
-        for (Bill bill : getBillByDate(date)) {
-            sum += bill.getPrice();
-        }
-        return sum;
+        return Lists.newArrayList(restaurantDao.allBillOrderById(restId));
     }
 
     @Override
     public List<User> getAllUser(long restId) {
-        return Lists.newArrayList(restaurantDao.getUserListBOrderById(restId));
+        return Lists.newArrayList(restaurantDao.allUserOrderById(restId));
     }
+
+//    @Override
+//    public List<Bill> getBillByDate(LocalDate date) {
+//        return Lists.newArrayList(restaurantDao.billListByDate(date));
+//    }
+
+//    @Override
+//    public double billSumByDate(LocalDate date) {
+//        double sum = 0;
+//        for (Bill bill : getBillByDate(date)) {
+//            sum += bill.getPrice();
+//        }
+//        return sum;
+//    }
+
 }
