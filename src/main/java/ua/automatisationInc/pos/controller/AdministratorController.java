@@ -16,9 +16,9 @@ public class AdministratorController {
 //    private CashierService cashierService;
 
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String getStartPage() {
-        return "index";
+        return "login";
     }
 
 //    @RequestMapping(path = "/administrator", method = RequestMethod.GET)
