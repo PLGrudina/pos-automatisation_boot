@@ -1,12 +1,13 @@
 package ua.automatisationInc.pos.services;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import ua.automatisationInc.pos.models.User;
 import ua.automatisationInc.pos.models.enums.UserRoles;
 
 /**
  * Created by Pavel Grudina on 08.04.2018.
  */
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     User save (User user);
 
@@ -14,5 +15,6 @@ public interface UserService {
 
     void deleteUserById (long userId);
 
-    void changeRole (long userId, UserRoles role);
+    void addUserRole (long userId, UserRoles role);
+
 }

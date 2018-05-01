@@ -1,10 +1,13 @@
 package ua.automatisationInc.pos.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import ua.automatisationInc.pos.models.enums.UserRoles;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -12,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USERS")
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -23,14 +26,24 @@ public class User implements Serializable {
     @Column(name = "restId", nullable = false, unique = true)
     private long restId;
 
-    @Column(name = "userLogin", nullable = false)
-    private String userLogin;
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
 
-    @Column(name = "userPassword", nullable = false)
-    private String userPassword;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @Enumerated(EnumType.STRING)
-    private UserRoles role;
+    @ElementCollection (targetClass = UserRoles.class)
+    private List<UserRoles> authorities = new ArrayList<>();
+
+    private boolean accountNonExpired;
+
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
+
+
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Dish> cashierBasket = new ArrayList<>();
@@ -39,10 +52,15 @@ public class User implements Serializable {
 
     }
 
-    public User(String userLogin, String userPassword, UserRoles role) {
-        this.userLogin = userLogin;
-        this.userPassword = userPassword;
-        this.role = role;
+    public User(String username, String password, List<UserRoles> authorities, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, List<Dish> cashierBasket) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.enabled = enabled;
+        this.cashierBasket = cashierBasket;
     }
 
     public long getId() {
@@ -53,28 +71,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUserLogin() {
-        return userLogin;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public UserRoles getRole() {
-        return role;
-    }
-
-    public void setRole(UserRoles role) {
-        this.role = role;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public long getRestId() {
@@ -93,6 +103,68 @@ public class User implements Serializable {
         this.cashierBasket = cashierBasket;
     }
 
+    public void setAuthorities(List<UserRoles> authorities) {
+        this.authorities = authorities;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        if (this.accountNonExpired) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        if (this.accountNonLocked) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        if (this.credentialsNonExpired) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isEnabled() {
+        if (this.enabled) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Collection<UserRoles> getAuthorities() {
+        return this.authorities;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,22 +173,43 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (id != user.id) return false;
-        if (!userLogin.equals(user.userLogin)) return false;
-        if (!userPassword.equals(user.userPassword)) return false;
-        return role == user.role;
+        if (restId != user.restId) return false;
+        if (accountNonExpired != user.accountNonExpired) return false;
+        if (accountNonLocked != user.accountNonLocked) return false;
+        if (credentialsNonExpired != user.credentialsNonExpired) return false;
+        if (enabled != user.enabled) return false;
+        if (!username.equals(user.username)) return false;
+        if (!password.equals(user.password)) return false;
+        return authorities.equals(user.authorities);
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + userLogin.hashCode();
-        result = 31 * result + userPassword.hashCode();
-        result = 31 * result + role.hashCode();
+        result = 31 * result + (int) (restId ^ (restId >>> 32));
+        result = 31 * result + username.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + authorities.hashCode();
+        result = 31 * result + (accountNonExpired ? 1 : 0);
+        result = 31 * result + (accountNonLocked ? 1 : 0);
+        result = 31 * result + (credentialsNonExpired ? 1 : 0);
+        result = 31 * result + (enabled ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login='" + userLogin + '\'' + ", password='" + userPassword + '\'' + ", role=" + role + '}';
+        return "User{" +
+                "id=" + id +
+                ", restId=" + restId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", authorities=" + authorities +
+                ", accountNonExpired=" + accountNonExpired +
+                ", accountNonLocked=" + accountNonLocked +
+                ", credentialsNonExpired=" + credentialsNonExpired +
+                ", enabled=" + enabled +
+                ", cashierBasket=" + cashierBasket +
+                '}';
     }
 }
