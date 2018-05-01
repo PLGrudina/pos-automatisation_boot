@@ -5,11 +5,12 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * Created by Pavel Grudina on 06.04.2018.
  */
+
 public enum UserRoles implements GrantedAuthority {
-//    ADMIN,
+    //    ADMIN,
 //    CASHIER,
 //    CHIEF
-      USER;
+    USER;
 
 
     @Override

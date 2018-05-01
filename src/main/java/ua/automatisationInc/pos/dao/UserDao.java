@@ -10,5 +10,5 @@ import ua.automatisationInc.pos.models.User;
 @Repository
 public interface UserDao extends CrudRepository<User, Long> {
 
-    User findOrderByUserLogin(String login);
+    User findOrderByUsername(String login);
 }
