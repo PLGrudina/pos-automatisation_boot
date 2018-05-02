@@ -7,10 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 
 public enum UserRoles implements GrantedAuthority {
-    //    ADMIN,
-//    CASHIER,
-//    CHIEF
-    USER;
+    ADMIN,
+    CASHIER,
+    CHIEF;
 
 
     @Override

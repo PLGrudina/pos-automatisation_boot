@@ -1,5 +1,7 @@
 package ua.automatisationInc.pos.models;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ua.automatisationInc.pos.models.enums.UserRoles;
@@ -32,7 +34,9 @@ public class User implements Serializable, UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @ElementCollection (targetClass = UserRoles.class)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserRoles> authorities = new ArrayList<>();
 
     private boolean accountNonExpired;
@@ -43,9 +47,8 @@ public class User implements Serializable, UserDetails {
 
     private boolean enabled;
 
-
-
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Dish> cashierBasket = new ArrayList<>();
 
     public User() {

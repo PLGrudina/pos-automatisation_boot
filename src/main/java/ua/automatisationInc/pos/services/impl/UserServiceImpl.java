@@ -30,8 +30,14 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername("user");
         user.setPassword("password");
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
+        user.setEnabled(true);
         List<UserRoles> roleList = new ArrayList<>();
-        roleList.add(UserRoles.USER);
+        roleList.add(UserRoles.ADMIN);
+        roleList.add(UserRoles.CHIEF);
+        roleList.add(UserRoles.CASHIER);
         user.setAuthorities(roleList);
         userDao.save(user);
     }
