@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.automatisationInc.pos.dao.UserDao;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public void init(){
         User user = new User();
         user.setUsername("user");
-        user.setPassword("password");
+        user.setPassword(new BCryptPasswordEncoder().encode("password"));
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
