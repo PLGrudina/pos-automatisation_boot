@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Pos-Automatisation</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <#--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+    <#--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+    <#--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <#--<link rel="shortcut icon" href="#" type="image/x-icon">-->
 </head>
 
 <body>
@@ -34,13 +35,7 @@
                     <a href="#" class="fa fa-question-circle"></a>
                 </div>
                 <div class="form-group">
-                    <#--<div class="main-checkbox">-->
-                        <#--<input type="checkbox" value="none" id="checkbox1" name="check"/>-->
-                        <#--<label for="checkbox1"></label>-->
-                    <#--</div>-->
-                    <span class="text">
-                        <a href="/registration">Register new account</a>
-                    </span>
+                        <a href="/">Register new account</a>
                     <button type="submit" class="btn btn-default">Sign in</button>
                 </div>
             </form>
